@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:left/core/exports.dart';
-import 'package:left/widgets/exports.dart';
+import 'package:left/widgets/dots_display_grid.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -51,28 +51,17 @@ class _HomeScreenState extends State<HomeScreen> {
           padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 20.0),
           child: Column(
             children: [
-              Expanded(child: buildDotGrid()),
+              Expanded(
+                child: DotsDisplayGrid(
+                  totalDots: totalDots,
+                  dulledDots: dulledDots,
+                  handleDotTap: _handleDotTap,
+                  handleDotRelease: _handleDotRelease,
+                ),
+              ),
               const Spacer(),
               _buildFooter(),
             ],
-          ),
-        ),
-      ),
-    );
-  }
-
-  Widget buildDotGrid() {
-    return Wrap(
-      spacing: 12.0,
-      runSpacing: 16.0,
-      children: List.generate(
-        totalDots,
-        (index) => GestureDetector(
-          onTapDown: (_) => _handleDotTap(index),
-          onTapUp: (_) => _handleDotRelease(),
-          onTapCancel: _handleDotRelease,
-          child: Dot(
-            dull: index < dulledDots,
           ),
         ),
       ),
