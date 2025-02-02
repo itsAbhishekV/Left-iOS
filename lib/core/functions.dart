@@ -1,3 +1,5 @@
+import 'package:intl/intl.dart';
+
 int getDaysInCurrentYear() {
   int year = DateTime.now().year;
 
@@ -36,4 +38,9 @@ String getMonthName(int month) {
     'December'
   ];
   return monthNames[month];
+}
+
+// returns formatted date with weekday string
+String getFormattedDate(DateTime date) {
+  return DateFormat('EEEE d MMMM, yyyy').format(date);
 }

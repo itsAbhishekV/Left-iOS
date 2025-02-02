@@ -4,16 +4,16 @@ import 'package:left/core/palette.dart';
 class Dot extends StatelessWidget {
   const Dot({
     super.key,
-    this.left = false,
+    this.dull = false,
   });
 
-  final bool left;
+  final bool dull;
 
   @override
   Widget build(BuildContext context) {
     return CircleAvatar(
       backgroundColor:
-          left ? AppPalette.secondary.withAlpha(69) : AppPalette.secondary,
+          dull ? AppPalette.secondary.withAlpha(69) : AppPalette.secondary,
       radius: 16.0,
     );
   }

@@ -10,30 +10,48 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  late final int totalDays;
-  late final int daysPassed;
+  final now = DateTime.now();
+  late final int totalDots;
+  late final int dulledDots;
 
   bool showPercentage = false;
+
+  bool showDate = false;
+  String? formattedDate;
 
   @override
   void initState() {
     super.initState();
     final now = DateTime.now();
-    totalDays = getDaysInCurrentMonth();
-    daysPassed = now.day - 1;
+    totalDots = getDaysInCurrentMonth();
+    dulledDots = now.day - 1;
+  }
+
+  void _handleDotTap(int index) {
+    final date = DateTime(now.year, now.month, index + 1);
+    setState(() {
+      showDate = true;
+      formattedDate = getFormattedDate(date);
+    });
+  }
+
+  void _handleDotRelease() {
+    setState(() {
+      showDate = false;
+    });
   }
 
   @override
   Widget build(BuildContext context) {
-    print('totalDays: $totalDays');
-    print('daysPassed: $daysPassed');
+    debugPrint('totalDots: $totalDots');
+    debugPrint('dotsDulled: $dulledDots');
     return Scaffold(
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 20.0),
           child: Column(
             children: [
-              Expanded(child: _buildDotGrid()),
+              Expanded(child: buildDotGrid()),
               const Spacer(),
               _buildFooter(),
             ],
@@ -43,23 +61,21 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 
-  Widget _buildDotGrid() {
+  Widget buildDotGrid() {
     return Wrap(
       spacing: 12.0,
       runSpacing: 16.0,
-      children: [
-        // Days that have passed (dull)
-        ...List.generate(
-          daysPassed,
-          (index) => const Dot(left: true),
+      children: List.generate(
+        totalDots,
+        (index) => GestureDetector(
+          onTapDown: (_) => _handleDotTap(index),
+          onTapUp: (_) => _handleDotRelease(),
+          onTapCancel: _handleDotRelease,
+          child: Dot(
+            dull: index < dulledDots,
+          ),
         ),
-
-        // Remaining days
-        ...List.generate(
-          totalDays - daysPassed,
-          (index) => const Dot(),
-        ),
-      ],
+      ),
     );
   }
 
@@ -69,7 +85,7 @@ class _HomeScreenState extends State<HomeScreen> {
       children: [
         // month name
         Text(
-          getMonthName(DateTime.now().month),
+          showDate ? formattedDate ?? '' : getMonthName(DateTime.now().month),
           style: AppTextStyle.title,
         ),
 
@@ -82,8 +98,8 @@ class _HomeScreenState extends State<HomeScreen> {
           },
           child: Text(
             showPercentage
-                ? '${(((totalDays - daysPassed) / totalDays) * 100).toStringAsFixed(0)}% left'
-                : '${totalDays - daysPassed} days left',
+                ? '${(((totalDots - dulledDots) / totalDots) * 100).toStringAsFixed(0)}% left'
+                : '${totalDots - dulledDots} days left',
             style: AppTextStyle.titleMedium.copyWith(
               color: AppPalette.secondary.withAlpha(180),
             ),
