@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:left/core/exports.dart';
+import 'package:left/features/exports.dart';
 
 class LeftApp extends StatelessWidget {
   const LeftApp({super.key});
@@ -10,14 +11,7 @@ class LeftApp extends StatelessWidget {
       title: 'Left',
       theme: darkTheme(),
       debugShowCheckedModeBanner: false,
-      home: const Scaffold(
-        body: Center(
-          child: Text(
-            'My App',
-            style: TextStyle(fontSize: 20.0),
-          ),
-        ),
-      ),
+      home: HomeScreen(),
     );
   }
 }
