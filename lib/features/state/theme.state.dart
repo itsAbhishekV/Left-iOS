@@ -3,13 +3,22 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:left/core/exports.dart';
 
 class ThemeNotifier extends StateNotifier<Color> {
-  ThemeNotifier() : super(AppPalette.secondary);
+  ThemeNotifier(this.ref) : super(appColors[0]);
 
-  void changeThemeColor(Color newColor) {
-    state = newColor;
+  final Ref ref;
+
+  void changeThemeColor(int newColorIndex) {
+    // updating the colorIndexProvider to reflect the selected index
+    ref.read(colorIndexProvider.notifier).state = newColorIndex;
+
+    state = appColors[newColorIndex];
   }
 }
 
 final themeProvider = StateNotifierProvider<ThemeNotifier, Color>((ref) {
-  return ThemeNotifier();
+  return ThemeNotifier(ref);
+});
+
+final colorIndexProvider = StateProvider<int>((ref) {
+  return 0;
 });

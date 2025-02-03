@@ -13,12 +13,10 @@ class ThemeBottomSheet extends ConsumerStatefulWidget {
 }
 
 class _ProfileBottomSheetState extends ConsumerState<ThemeBottomSheet> {
-  void _changeThemeColor(Color color, BuildContext context) {
-    ref.read(themeProvider.notifier).changeThemeColor(color);
-    // also update AppPalette.secondary globally
-    AppPalette.secondary = color;
+  void _changeThemeColor(int colorIndex, BuildContext context) {
+    ref.read(themeProvider.notifier).changeThemeColor(colorIndex);
     final newColor = ref.read(themeProvider);
-    debugPrint('new color is $newColor');
+    debugPrint('new color is ${appColors[colorIndex]}');
   }
 
   @override
@@ -65,49 +63,49 @@ class _ProfileBottomSheetState extends ConsumerState<ThemeBottomSheet> {
                         actions: <Widget>[
                           CupertinoActionSheetAction(
                             onPressed: () {
-                              _changeThemeColor(Colors.white, context);
+                              _changeThemeColor(1, context);
                               Navigator.pop(context);
                             },
                             child: _buildActionLabel('White'),
                           ),
                           CupertinoActionSheetAction(
                             onPressed: () {
-                              _changeThemeColor(Colors.pinkAccent, context);
+                              _changeThemeColor(2, context);
                               Navigator.pop(context);
                             },
                             child: _buildActionLabel('Pink'),
                           ),
                           CupertinoActionSheetAction(
                             onPressed: () {
-                              _changeThemeColor(Colors.redAccent, context);
+                              _changeThemeColor(3, context);
                               Navigator.pop(context);
                             },
                             child: _buildActionLabel('Red'),
                           ),
                           CupertinoActionSheetAction(
                             onPressed: () {
-                              _changeThemeColor(Colors.yellowAccent, context);
+                              _changeThemeColor(4, context);
                               Navigator.pop(context);
                             },
                             child: _buildActionLabel('Yellow'),
                           ),
                           CupertinoActionSheetAction(
                             onPressed: () {
-                              _changeThemeColor(Colors.greenAccent, context);
+                              _changeThemeColor(5, context);
                               Navigator.pop(context);
                             },
                             child: _buildActionLabel('Green'),
                           ),
                           CupertinoActionSheetAction(
                             onPressed: () {
-                              _changeThemeColor(Colors.purpleAccent, context);
+                              _changeThemeColor(6, context);
                               Navigator.pop(context);
                             },
                             child: _buildActionLabel('Purple'),
                           ),
                           CupertinoActionSheetAction(
                             onPressed: () {
-                              _changeThemeColor(Colors.blueAccent, context);
+                              _changeThemeColor(7, context);
                               Navigator.pop(context);
                             },
                             child: _buildActionLabel('Blue'),

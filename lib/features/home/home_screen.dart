@@ -93,6 +93,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
 
     return GestureDetector(
       onLongPress: () {
+        HapticFeedback.heavyImpact();
         showBottomModalDialog(
           context: context,
           children: [
