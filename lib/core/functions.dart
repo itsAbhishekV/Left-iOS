@@ -1,4 +1,5 @@
 import 'package:intl/intl.dart';
+import 'package:left/core/enum.dart';
 
 int getDaysInCurrentYear() {
   int year = DateTime.now().year;
@@ -26,10 +27,15 @@ int getDaysInCurrentMonth() {
   return lastDayOfCurrentMonth.day;
 }
 
-int getMonthInLife(DateTime dateOfBirth) {
+int getMonthsInLife() {
   const leftExpectancyInYears = 82;
   const monthsInLife = leftExpectancyInYears * 12;
   return monthsInLife;
+}
+
+int getMonthsPassedInLife(DateTime dateOfBirth) {
+  final monthsPassed = DateTime.now().difference(dateOfBirth).inDays ~/ 30;
+  return monthsPassed;
 }
 
 // returns the name of the month for a given month index.
@@ -53,6 +59,13 @@ String getMonthName(int month) {
 }
 
 // returns formatted date with weekday string
-String getFormattedDate(DateTime date) {
-  return DateFormat('EEEE d MMMM, yyyy').format(date);
+String getFormattedDate(DateTime date, DotsType type) {
+  switch (type) {
+    case DotsType.month:
+      return DateFormat('EEEE d MMMM, yyyy').format(date);
+    case DotsType.year:
+      return DateFormat('d MMMM, yyyy').format(date);
+    case DotsType.life:
+      return DateFormat('MMMM, yyyy').format(date);
+  }
 }

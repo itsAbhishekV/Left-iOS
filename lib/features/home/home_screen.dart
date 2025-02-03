@@ -16,6 +16,8 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
   late int totalDots;
   late int dulledDots;
 
+  final dob = DateTime(2003, 3, 26);
+
   bool showPercentage = false;
   bool showDate = false;
   String? formattedDate;
@@ -31,18 +33,40 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
         dulledDots = getDaysPassedInYear() - 1;
         break;
       case DotsType.life:
-        totalDots = getMonthInLife(DateTime(2003, 3, 26));
-        dulledDots = 0;
+        totalDots = getMonthsInLife();
+        dulledDots =
+            getMonthsPassedInLife(DateTime(dob.year, dob.month + 3, dob.day));
         break;
     }
   }
 
   void _handleDotTap(int index) {
-    final date = DateTime(now.year, now.month, index + 1);
-    setState(() {
-      showDate = true;
-      formattedDate = getFormattedDate(date);
-    });
+    final type = ref.watch(dotTypeStateProvider);
+    switch (type) {
+      case DotsType.month:
+        final date = DateTime(now.year, now.month, index + 1);
+        setState(() {
+          showDate = true;
+          formattedDate = getFormattedDate(date, type);
+        });
+        break;
+
+      case DotsType.year:
+        final date = DateTime(now.year, 1, 1).add(Duration(days: index));
+        setState(() {
+          showDate = true;
+          formattedDate = getFormattedDate(date, type);
+        });
+        break;
+
+      case DotsType.life:
+        final date = DateTime(dob.year, dob.month + (index), dob.day);
+        setState(() {
+          showDate = true;
+          formattedDate = getFormattedDate(date, type);
+        });
+        break;
+    }
   }
 
   void _handleDotRelease() {
@@ -67,6 +91,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 20.0),
           child: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Expanded(
                 child: DotsDisplayGrid(
@@ -76,7 +101,6 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
                   handleDotRelease: _handleDotRelease,
                 ),
               ),
-              const Spacer(),
               _buildFooter(type),
             ],
           ),
@@ -107,6 +131,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
 
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      crossAxisAlignment: CrossAxisAlignment.end,
       children: [
         GestureDetector(
           onTap: () {

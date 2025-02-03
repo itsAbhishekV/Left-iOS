@@ -28,7 +28,11 @@ class DotsDisplayGrid extends ConsumerWidget {
       children: List.generate(
         totalDots,
         (index) => GestureDetector(
-          onTapDown: (_) => handleDotTap(index),
+          behavior: HitTestBehavior.opaque,
+          onTapDown: (_) {
+            print('index: $index');
+            handleDotTap(index);
+          },
           onTapUp: (_) => handleDotRelease(),
           onTapCancel: handleDotRelease,
           child: Dot(

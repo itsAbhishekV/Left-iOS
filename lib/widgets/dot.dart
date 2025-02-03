@@ -21,7 +21,7 @@ class Dot extends StatelessWidget {
         size = 18.0;
         break;
       case DotsType.year:
-        size = 5.0;
+        size = 4.0;
         break;
       case DotsType.life:
         size = 3.0;
