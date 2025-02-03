@@ -19,6 +19,7 @@ showBottomModalDialog({
         borderRadius: const BorderRadius.vertical(top: Radius.circular(25.0)),
       ),
       child: Material(
+        color: AppPalette.primary,
         borderRadius: const BorderRadius.vertical(top: Radius.circular(25.0)),
         child: Padding(
           padding: const EdgeInsets.symmetric(

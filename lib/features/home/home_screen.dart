@@ -82,6 +82,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     final type = ref.watch(dotTypeStateProvider);
+    final themeColor = ref.watch(themeProvider);
 
     // Ensure dots update whenever `type` changes
     _initializeDots(type);
@@ -95,6 +96,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
         showBottomModalDialog(
           context: context,
           children: [
+            ThemeBottomSheet(),
             ProfileBottomSheet(),
           ],
         );
@@ -115,7 +117,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
                     handleDotRelease: _handleDotRelease,
                   ),
                 ),
-                _buildFooter(type),
+                _buildFooter(type, themeColor),
               ],
             ),
           ),
@@ -124,7 +126,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
     );
   }
 
-  Widget _buildFooter(DotsType type) {
+  Widget _buildFooter(DotsType type, Color theme) {
     final List<DotsType> dotsType = [
       DotsType.month,
       DotsType.year,
@@ -160,7 +162,9 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
           },
           child: Text(
             showDate ? formattedDate ?? '' : footerHeading,
-            style: AppTextStyle.title,
+            style: AppTextStyle.title.copyWith(
+              color: theme,
+            ),
           ),
         ),
         GestureDetector(
@@ -176,7 +180,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
                 ? '${(((totalDots - dulledDots) / totalDots) * 100).toStringAsFixed(0)}% left'
                 : '${totalDots - dulledDots} days left',
             style: AppTextStyle.titleMedium.copyWith(
-              color: AppPalette.secondary.withAlpha(180),
+              color: theme.withAlpha(180),
             ),
           ),
         ),

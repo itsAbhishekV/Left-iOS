@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:left/core/enum.dart';
-import 'package:left/core/palette.dart';
+import 'package:left/features/exports.dart';
 
-class Dot extends StatelessWidget {
+class Dot extends ConsumerWidget {
   const Dot({
     super.key,
     this.dull = false,
@@ -13,7 +14,8 @@ class Dot extends StatelessWidget {
   final DotsType type;
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final theme = ref.watch(themeProvider);
     double size;
 
     switch (type) {
@@ -29,8 +31,7 @@ class Dot extends StatelessWidget {
     }
 
     return CircleAvatar(
-      backgroundColor:
-          dull ? AppPalette.secondary.withAlpha(69) : AppPalette.secondary,
+      backgroundColor: dull ? theme.withAlpha(69) : theme,
       radius: size,
     );
   }
