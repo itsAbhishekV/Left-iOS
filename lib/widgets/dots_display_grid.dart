@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:left/core/exports.dart';
+import 'package:left/features/exports.dart';
 
 import 'dot.dart';
 
-class DotsDisplayGrid extends StatelessWidget {
+class DotsDisplayGrid extends ConsumerWidget {
   const DotsDisplayGrid({
     super.key,
     required this.totalDots,
@@ -17,10 +20,11 @@ class DotsDisplayGrid extends StatelessWidget {
   final void Function() handleDotRelease;
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final type = ref.watch(dotTypeStateProvider);
     return Wrap(
-      spacing: 12.0,
-      runSpacing: 16.0,
+      spacing: type == DotsType.life ? 8.0 : 12.0,
+      runSpacing: type == DotsType.life ? 10.0 : 16.0,
       children: List.generate(
         totalDots,
         (index) => GestureDetector(
@@ -29,6 +33,7 @@ class DotsDisplayGrid extends StatelessWidget {
           onTapCancel: handleDotRelease,
           child: Dot(
             dull: index < dulledDots,
+            type: type,
           ),
         ),
       ),

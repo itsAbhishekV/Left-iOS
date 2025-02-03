@@ -1,35 +1,30 @@
 import 'package:flutter/material.dart';
+import 'package:left/core/enum.dart';
 import 'package:left/core/palette.dart';
-
-enum DotSize {
-  month,
-  year,
-  life,
-}
 
 class Dot extends StatelessWidget {
   const Dot({
     super.key,
     this.dull = false,
-    this.dotSize = DotSize.month,
+    this.type = DotsType.month,
   });
 
   final bool dull;
-  final DotSize dotSize;
+  final DotsType type;
 
   @override
   Widget build(BuildContext context) {
     double size;
 
-    switch (dotSize) {
-      case DotSize.month:
-        size = 16.0;
+    switch (type) {
+      case DotsType.month:
+        size = 18.0;
         break;
-      case DotSize.year:
-        size = 14.0;
+      case DotsType.year:
+        size = 5.0;
         break;
-      case DotSize.life:
-        size = 10.0;
+      case DotsType.life:
+        size = 3.0;
         break;
     }
 

@@ -8,6 +8,12 @@ int getDaysInCurrentYear() {
   return isLeapYear ? 366 : 365;
 }
 
+int getDaysPassedInYear() {
+  final now = DateTime.now();
+  final startOfYear = DateTime(now.year, 1, 1);
+  return now.difference(startOfYear).inDays + 1;
+}
+
 // returns the number of days in the current month
 int getDaysInCurrentMonth() {
   DateTime now = DateTime.now();
@@ -18,6 +24,12 @@ int getDaysInCurrentMonth() {
       firstDayNextMonth.subtract(Duration(days: 1));
 
   return lastDayOfCurrentMonth.day;
+}
+
+int getMonthInLife(DateTime dateOfBirth) {
+  const leftExpectancyInYears = 82;
+  const monthsInLife = leftExpectancyInYears * 12;
+  return monthsInLife;
 }
 
 // returns the name of the month for a given month index.
