@@ -17,11 +17,22 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
   late int totalDots;
   late int dulledDots;
 
-  final dob = DateTime(2003, 3, 26);
+  late DateTime dob;
 
   bool showPercentage = false;
   bool showDate = false;
   String? formattedDate;
+
+  @override
+  initState() {
+    super.initState();
+    final user = ref.read(userProvider);
+    if (user == null) {
+      dob = DateTime(2003, 3, 26);
+    } else {
+      dob = DateTime.parse(user.dob);
+    }
+  }
 
   void _initializeDots(DotsType type) {
     switch (type) {
@@ -83,6 +94,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
   Widget build(BuildContext context) {
     final type = ref.watch(dotTypeStateProvider);
     final themeColor = ref.watch(themeProvider);
+    final user = ref.watch(userProvider);
 
     // Ensure dots update whenever `type` changes
     _initializeDots(type);
@@ -92,8 +104,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
     debugPrint('dulledDots: $dulledDots');
 
     return GestureDetector(
-      onLongPress: () {
-        HapticFeedback.heavyImpact();
+      onDoubleTap: () {
         showBottomModalDialog(
           context: context,
           children: [
@@ -101,6 +112,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
             ProfileBottomSheet(),
           ],
         );
+        HapticFeedback.heavyImpact();
       },
       child: Scaffold(
         body: SafeArea(
@@ -118,7 +130,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
                     handleDotRelease: _handleDotRelease,
                   ),
                 ),
-                _buildFooter(type, themeColor),
+                _buildFooter(type, themeColor, user),
               ],
             ),
           ),
@@ -127,11 +139,11 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
     );
   }
 
-  Widget _buildFooter(DotsType type, Color theme) {
+  Widget _buildFooter(DotsType type, Color theme, UserModel? user) {
     final List<DotsType> dotsType = [
       DotsType.month,
       DotsType.year,
-      DotsType.life
+      if (user != null) DotsType.life // only show life if user is present
     ];
 
     String footerHeading;
@@ -143,7 +155,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
         footerHeading = now.year.toString();
         break;
       case DotsType.life:
-        footerHeading = 'Life';
+        footerHeading = user?.name ?? 'Life';
         break;
     }
 
@@ -154,12 +166,12 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
         GestureDetector(
           behavior: HitTestBehavior.opaque,
           onTap: () {
-            HapticFeedback.vibrate();
             ref.read(dotTypeStateProvider.notifier).update((state) {
               final currentIndex = dotsType.indexOf(state);
               final nextIndex = (currentIndex + 1) % dotsType.length;
               return dotsType[nextIndex];
             });
+            HapticFeedback.vibrate();
           },
           child: Text(
             showDate ? formattedDate ?? '' : footerHeading,
@@ -171,10 +183,10 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
         GestureDetector(
           behavior: HitTestBehavior.opaque,
           onTap: () {
-            HapticFeedback.heavyImpact();
             setState(() {
               showPercentage = !showPercentage;
             });
+            HapticFeedback.heavyImpact();
           },
           child: Text(
             showPercentage

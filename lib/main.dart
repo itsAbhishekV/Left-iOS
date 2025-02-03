@@ -2,11 +2,23 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import 'app.dart';
+import 'core/exports.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+
+  final sharedPrefs = SharedPrefsService();
+  final dob = await sharedPrefs.getDob();
+  final name = await sharedPrefs.getUserName();
+  final colorIndex = await sharedPrefs.getThemeColor();
+
   runApp(
     ProviderScope(
-      child: const LeftApp(),
+      child: LeftApp(
+        dob: dob,
+        name: name,
+        colorIndex: colorIndex,
+      ),
     ),
   );
 }
