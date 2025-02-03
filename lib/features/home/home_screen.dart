@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:left/core/exports.dart';
 import 'package:left/features/exports.dart';
@@ -49,6 +50,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
           showDate = true;
           formattedDate = getFormattedDate(date, type);
         });
+        HapticFeedback.lightImpact();
         break;
 
       case DotsType.year:
@@ -57,6 +59,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
           showDate = true;
           formattedDate = getFormattedDate(date, type);
         });
+        HapticFeedback.lightImpact();
         break;
 
       case DotsType.life:
@@ -65,6 +68,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
           showDate = true;
           formattedDate = getFormattedDate(date, type);
         });
+        HapticFeedback.lightImpact();
         break;
     }
   }
@@ -89,7 +93,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
     return Scaffold(
       body: SafeArea(
         child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 20.0),
+          padding: const EdgeInsets.symmetric(horizontal: 18.0, vertical: 20.0),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
@@ -131,10 +135,12 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
 
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      crossAxisAlignment: CrossAxisAlignment.end,
+      crossAxisAlignment: CrossAxisAlignment.center,
       children: [
         GestureDetector(
+          behavior: HitTestBehavior.opaque,
           onTap: () {
+            HapticFeedback.vibrate();
             ref.read(dotTypeStateProvider.notifier).update((state) {
               final currentIndex = dotsType.indexOf(state);
               final nextIndex = (currentIndex + 1) % dotsType.length;
@@ -147,7 +153,9 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
           ),
         ),
         GestureDetector(
+          behavior: HitTestBehavior.opaque,
           onTap: () {
+            HapticFeedback.heavyImpact();
             setState(() {
               showPercentage = !showPercentage;
             });
