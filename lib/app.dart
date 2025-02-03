@@ -37,6 +37,7 @@ class _LeftAppState extends ConsumerState<LeftApp> {
             colorIndex: widget.colorIndex!,
           );
         });
+        ref.read(themeProvider.notifier).changeThemeColor(widget.colorIndex!);
       } else {
         ref.read(userProvider.notifier).update((state) => null);
       }

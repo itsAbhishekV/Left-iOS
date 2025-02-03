@@ -28,7 +28,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
     super.initState();
     final user = ref.read(userProvider);
     if (user == null) {
-      dob = DateTime(2003, 3, 26);
+      dob = DateTime.now();
     } else {
       dob = DateTime.parse(user.dob);
     }
@@ -93,9 +93,9 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     final type = ref.watch(dotTypeStateProvider);
+    final user = ref.watch(userProvider);
     final colorIndex = ref.watch(colorIndexProvider);
     final color = appColors[colorIndex];
-    final user = ref.watch(userProvider);
 
     // Ensure dots update whenever `type` changes
     _initializeDots(type);
