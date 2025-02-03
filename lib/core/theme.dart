@@ -14,6 +14,18 @@ class AppTextStyle {
     fontWeight: FontWeight.w500,
     color: AppPalette.secondary,
   );
+  static const TextStyle smallTitle = TextStyle(
+    fontFamily: 'AlbertSans',
+    fontSize: 12.0,
+    fontWeight: FontWeight.w700,
+    color: AppPalette.secondary,
+  );
+  static const TextStyle smallBody = TextStyle(
+    fontFamily: 'AlbertSans',
+    fontSize: 12.0,
+    fontWeight: FontWeight.w500,
+    color: AppPalette.secondary,
+  );
 }
 
 ThemeData darkTheme() {

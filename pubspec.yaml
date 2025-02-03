@@ -36,6 +36,8 @@ dependencies:
   cupertino_icons: ^1.0.8
   intl: ^0.20.2
   flutter_riverpod: ^2.6.1
+  wolt_modal_sheet: ^0.11.0
+  gap: ^3.0.1
 
 dev_dependencies:
   flutter_test:

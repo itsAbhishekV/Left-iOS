@@ -90,23 +90,34 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
     debugPrint('totalDots: $totalDots');
     debugPrint('dulledDots: $dulledDots');
 
-    return Scaffold(
-      body: SafeArea(
-        child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 18.0, vertical: 20.0),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Expanded(
-                child: DotsDisplayGrid(
-                  totalDots: totalDots,
-                  dulledDots: dulledDots,
-                  handleDotTap: _handleDotTap,
-                  handleDotRelease: _handleDotRelease,
+    return GestureDetector(
+      onLongPress: () {
+        showBottomModalDialog(
+          context: context,
+          children: [
+            ProfileBottomSheet(),
+          ],
+        );
+      },
+      child: Scaffold(
+        body: SafeArea(
+          child: Padding(
+            padding:
+                const EdgeInsets.symmetric(horizontal: 18.0, vertical: 20.0),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Expanded(
+                  child: DotsDisplayGrid(
+                    totalDots: totalDots,
+                    dulledDots: dulledDots,
+                    handleDotTap: _handleDotTap,
+                    handleDotRelease: _handleDotRelease,
+                  ),
                 ),
-              ),
-              _buildFooter(type),
-            ],
+                _buildFooter(type),
+              ],
+            ),
           ),
         ),
       ),
