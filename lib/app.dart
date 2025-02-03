@@ -3,7 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:left/core/exports.dart';
 import 'package:left/features/exports.dart';
 
-class LeftApp extends ConsumerWidget {
+class LeftApp extends ConsumerStatefulWidget {
   final String? name;
   final String? dob;
   final int? colorIndex;
@@ -16,22 +16,35 @@ class LeftApp extends ConsumerWidget {
   });
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    // update the user state with the values if available
-    if (dob != null && name != null && colorIndex != null) {
-      ref.read(userProvider.notifier).update((state) {
-        return UserModel(
-          name: name!,
-          dob: dob!,
-          colorIndex: colorIndex!,
-        );
-      });
-    } else {
-      ref.read(userProvider.notifier).update((state) {
-        return null;
-      });
-    }
-    
+  ConsumerState<LeftApp> createState() => _LeftAppState();
+}
+
+class _LeftAppState extends ConsumerState<LeftApp> {
+  @override
+  void initState() {
+    super.initState();
+
+    Future.microtask(() {
+      if (!mounted) return;
+
+      if (widget.dob != null &&
+          widget.name != null &&
+          widget.colorIndex != null) {
+        ref.read(userProvider.notifier).update((state) {
+          return UserModel(
+            name: widget.name!,
+            dob: widget.dob!,
+            colorIndex: widget.colorIndex!,
+          );
+        });
+      } else {
+        ref.read(userProvider.notifier).update((state) => null);
+      }
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Left',
       theme: darkTheme(),

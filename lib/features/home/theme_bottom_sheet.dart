@@ -15,8 +15,7 @@ class ThemeBottomSheet extends ConsumerStatefulWidget {
 class _ProfileBottomSheetState extends ConsumerState<ThemeBottomSheet> {
   void _changeThemeColor(int colorIndex, BuildContext context) {
     ref.read(themeProvider.notifier).changeThemeColor(colorIndex);
-    final newColor = ref.read(themeProvider);
-    debugPrint('new color is ${appColors[colorIndex]}');
+    print('Color Index: $colorIndex');
   }
 
   @override
