@@ -59,6 +59,10 @@ class _ProfileBottomSheetState extends ConsumerState<ProfileBottomSheet> {
       isLoading = false;
     });
 
+    ref.read(dotTypeStateProvider.notifier).update(
+          (state) => DotsType.life,
+        );
+
     Navigator.pop(context);
   }
 

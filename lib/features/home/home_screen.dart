@@ -192,7 +192,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
           child: Text(
             showPercentage
                 ? '${(((totalDots - dulledDots) / totalDots) * 100).toStringAsFixed(0)}% left'
-                : '${totalDots - dulledDots} days left',
+                : '${totalDots - dulledDots} ${type == DotsType.life ? 'months' : 'days'} left',
             style: AppTextStyle.titleMedium.copyWith(
               color: color.withAlpha(180),
             ),
