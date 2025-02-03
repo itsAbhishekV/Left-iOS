@@ -54,6 +54,7 @@ class _ProfileBottomSheetState extends ConsumerState<ProfileBottomSheet> {
 
     // updating user state
     ref.read(userProvider.notifier).update((state) => user);
+    ref.read(dobProvider.notifier).state = dob;
 
     setState(() {
       isLoading = false;

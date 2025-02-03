@@ -24,17 +24,13 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
   String? formattedDate;
 
   @override
-  initState() {
+  void initState() {
     super.initState();
-    final user = ref.read(userProvider);
-    if (user == null) {
-      dob = DateTime.now();
-    } else {
-      dob = DateTime.parse(user.dob);
-    }
+    // Initialize dob to a default value. We'll update it later in the build method.
+    dob = DateTime.now();
   }
 
-  void _initializeDots(DotsType type) {
+  void _initializeDots(DotsType type, String dobInString) {
     switch (type) {
       case DotsType.month:
         totalDots = getDaysInCurrentMonth();
@@ -46,8 +42,9 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
         break;
       case DotsType.life:
         totalDots = getMonthsInLife();
-        dulledDots =
-            getMonthsPassedInLife(DateTime(dob.year, dob.month + 3, dob.day));
+        final myDob = DateTime.parse(dobInString);
+        dulledDots = getMonthsPassedInLife(
+            DateTime(myDob.year, myDob.month + 3, myDob.day));
         break;
     }
   }
@@ -74,12 +71,6 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
         break;
 
       case DotsType.life:
-        final date = DateTime(dob.year, dob.month + (index), dob.day);
-        setState(() {
-          showDate = true;
-          formattedDate = getFormattedDate(date, type);
-        });
-        HapticFeedback.lightImpact();
         break;
     }
   }
@@ -92,13 +83,13 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final type = ref.watch(dotTypeStateProvider);
     final user = ref.watch(userProvider);
+    final type = ref.watch(dotTypeStateProvider);
     final colorIndex = ref.watch(colorIndexProvider);
     final color = appColors[colorIndex];
+    final dobInString = ref.watch(dobProvider);
 
-    // Ensure dots update whenever `type` changes
-    _initializeDots(type);
+    _initializeDots(type, dobInString);
 
     debugPrint('type: $type');
     debugPrint('totalDots: $totalDots');

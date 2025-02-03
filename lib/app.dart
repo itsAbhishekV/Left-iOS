@@ -38,6 +38,7 @@ class _LeftAppState extends ConsumerState<LeftApp> {
           );
         });
         ref.read(themeProvider.notifier).changeThemeColor(widget.colorIndex!);
+        ref.read(dobProvider.notifier).state = widget.dob!;
       } else {
         ref.read(userProvider.notifier).update((state) => null);
       }
