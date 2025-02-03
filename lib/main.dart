@@ -10,7 +10,7 @@ void main() async {
   final sharedPrefs = SharedPrefsService();
   final dob = await sharedPrefs.getDob();
   final name = await sharedPrefs.getUserName();
-  final colorIndex = await sharedPrefs.getThemeColor();
+  final colorIndex = await sharedPrefs.getColorIndex();
 
   runApp(
     ProviderScope(

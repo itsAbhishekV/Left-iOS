@@ -45,8 +45,8 @@ class _ProfileBottomSheetState extends ConsumerState<ProfileBottomSheet> {
     final colorIndex = ref.watch(colorIndexProvider);
 
     final user = UserModel(name: name, dob: dob, colorIndex: colorIndex);
-    // print('USER: ');
-    // print(user.toJson());
+    print('USER: ');
+    print(user.toJson());
     final sharedPrefs = SharedPrefsService();
 
     // saving to shared prefs.

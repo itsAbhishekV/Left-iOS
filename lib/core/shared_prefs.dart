@@ -23,13 +23,13 @@ class SharedPrefsService {
   }
 
   // Get theme color
-  Future<int?> getThemeColor() async {
+  Future<int?> getColorIndex() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     int? colorValue = prefs.getInt('theme_color');
     return colorValue;
   }
 
-  // Clear user data (optional)
+  // Clear user data
   Future<void> clearUserData() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     await prefs.remove('user_name');
