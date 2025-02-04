@@ -24,7 +24,7 @@ class DotsDisplayGrid extends ConsumerWidget {
     final type = ref.watch(dotTypeStateProvider);
     return Wrap(
       spacing: type == DotsType.life ? 8.0 : 12.0,
-      runSpacing: type == DotsType.life ? 10.0 : 16.0,
+      runSpacing: type == DotsType.life ? 8.0 : 16.0,
       children: List.generate(
         totalDots,
         (index) => GestureDetector(
