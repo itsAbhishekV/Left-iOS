@@ -27,15 +27,35 @@ int getDaysInCurrentMonth() {
   return lastDayOfCurrentMonth.day;
 }
 
-int getMonthsInLife() {
-  const leftExpectancyInYears = 82;
-  const monthsInLife = leftExpectancyInYears * 12;
-  return monthsInLife;
+int getTotalMonthsInLife() {
+  const totalLifeExpectancyInYears = 82;
+  return totalLifeExpectancyInYears * 12;
 }
 
 int getMonthsPassedInLife(DateTime dateOfBirth) {
-  final monthsPassed = DateTime.now().difference(dateOfBirth).inDays ~/ 30;
-  return monthsPassed;
+  final now = DateTime.now();
+  int yearsPassed = now.year - dateOfBirth.year;
+  int monthsPassed = now.month - dateOfBirth.month;
+
+  if (now.month < dateOfBirth.month ||
+      (now.month == dateOfBirth.month && now.day < dateOfBirth.day)) {
+    yearsPassed -= 1;
+  }
+
+  int totalMonthsPassed = (yearsPassed * 12) + now.month - dateOfBirth.month;
+
+  // Debugging prints
+  // print('DOB: $dateOfBirth');
+  // print('Now: $now');
+  // print('Years Passed: $yearsPassed');
+  // print('Months Passed: ${now.month - dateOfBirth.month}');
+  // print('Total Months Passed: $totalMonthsPassed');
+
+  return totalMonthsPassed;
+}
+
+int getRemainingMonthsInLife(DateTime dateOfBirth) {
+  return getTotalMonthsInLife() - getMonthsPassedInLife(dateOfBirth);
 }
 
 // returns the name of the month for a given month index.
@@ -62,7 +82,7 @@ String getMonthName(int month) {
 String getFormattedDate(DateTime date, DotsType type) {
   switch (type) {
     case DotsType.month:
-      return DateFormat('EEEE d MMMM, yyyy').format(date);
+      return DateFormat('EEEE d, yyyy').format(date);
     case DotsType.year:
       return DateFormat('d MMMM, yyyy').format(date);
     case DotsType.life:

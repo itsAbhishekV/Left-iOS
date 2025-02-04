@@ -17,6 +17,8 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
   late int totalDots;
   late int dulledDots;
 
+  late bool showEsterText;
+
   late DateTime dob;
 
   bool showPercentage = false;
@@ -26,6 +28,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
   @override
   void initState() {
     super.initState();
+    showEsterText = false;
     // Initialize dob to a default value. We'll update it later in the build method.
     dob = DateTime.now();
   }
@@ -41,10 +44,20 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
         dulledDots = getDaysPassedInYear() - 1;
         break;
       case DotsType.life:
-        totalDots = getMonthsInLife();
+        totalDots = getTotalMonthsInLife();
         final myDob = DateTime.parse(dobInString);
-        dulledDots = getMonthsPassedInLife(
-            DateTime(myDob.year, myDob.month + 3, myDob.day));
+        dulledDots = getMonthsPassedInLife(myDob) - 1;
+
+        // if negative
+        if ((totalDots - dulledDots) < 0) {
+          setState(() {
+            showEsterText = true;
+          });
+        } else {
+          setState(() {
+            showEsterText = false;
+          });
+        }
         break;
     }
   }
@@ -91,6 +104,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
 
     _initializeDots(type, dobInString);
 
+    debugPrint('esterText: $showEsterText');
     debugPrint('type: $type');
     debugPrint('totalDots: $totalDots');
     debugPrint('dulledDots: $dulledDots');
@@ -122,7 +136,15 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
                     handleDotRelease: _handleDotRelease,
                   ),
                 ),
-                _buildFooter(type, color, user),
+                if (showEsterText)
+                  Text(
+                    'YOU MADE IT PAST 82. FUCK.',
+                    style: AppTextStyle.title.copyWith(
+                      color: color,
+                      fontWeight: FontWeight.w600,
+                    ),
+                  ),
+                if (!showEsterText) _buildFooter(type, color, user),
               ],
             ),
           ),
