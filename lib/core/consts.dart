@@ -8,5 +8,7 @@ const List appColors = [
   Colors.yellowAccent,
   Colors.greenAccent,
   Colors.purpleAccent,
-  Colors.blueAccent
+  Colors.blueAccent,
+  Color(0xFF815FC4),
+  Color(0xFFC6B5E2)
 ];

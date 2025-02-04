@@ -105,6 +105,20 @@ class _ProfileBottomSheetState extends ConsumerState<ThemeBottomSheet> {
                           },
                           child: _buildActionLabel('Blue'),
                         ),
+                        CupertinoActionSheetAction(
+                          onPressed: () {
+                            _changeThemeColor(8, context);
+                            Navigator.pop(context);
+                          },
+                          child: _buildActionLabel('Dark Lavender'),
+                        ),
+                        CupertinoActionSheetAction(
+                          onPressed: () {
+                            _changeThemeColor(9, context);
+                            Navigator.pop(context);
+                          },
+                          child: _buildActionLabel('Light Lavender'),
+                        ),
                       ],
                       cancelButton: CupertinoActionSheetAction(
                         onPressed: () {
