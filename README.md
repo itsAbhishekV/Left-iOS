@@ -18,10 +18,6 @@ flutter run
 
 ## 📸 Screenshots
 
-### Home Screen
-
 <img src="screenshots/home_ss.png" width="200" alt="Home Screen">
-
-### Customization Sheet
 
 <img src="screenshots/customizing_ss.png" width="200" alt="Customization Sheet">
