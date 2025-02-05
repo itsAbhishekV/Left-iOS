@@ -1,16 +1,27 @@
-# left
+# Left for Android
 
-A new Flutter project.
+A simple, no-frills app that visualizes your life as dots—dull for days you’ve lived, bright for the
+days ahead. No ads, no sign-ups, just a clean way to track time.
 
-## Getting Started
+## 📥 Download APK
 
-This project is a starting point for a Flutter application.
+[Download the latest APK](https://drive.google.com/file/d/14ZqXWz4u2dkYNldHAGxYHR_RvLHNrupE/view?usp=drive_link)
 
-A few resources to get you started if this is your first Flutter project:
+## 🚀 Clone & Run
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+```sh
+git clone https://github.com/itsAbhishekV/Left-iOS.git
+cd left-android
+flutter pub get
+flutter run
+```
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+## 📸 Screenshots
+
+### Home Screen
+
+<img src="screenshots/home_ss.png" width="200" alt="Home Screen">
+
+### Customization Sheet
+
+<img src="screenshots/customizing_ss.png" width="200" alt="Customization Sheet">
