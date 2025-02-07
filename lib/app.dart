@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:home_widget/home_widget.dart';
 import 'package:left/core/exports.dart';
 import 'package:left/features/exports.dart';
+
+const String appGroupId = 'home_widget';
+const String androidWidgetName = 'HomeWidget';
 
 class LeftApp extends ConsumerStatefulWidget {
   final String? name;
@@ -20,9 +24,21 @@ class LeftApp extends ConsumerStatefulWidget {
 }
 
 class _LeftAppState extends ConsumerState<LeftApp> {
+  void updateWidget() {
+    final title = 'Left';
+    final description = 'A new Flutter project.';
+    HomeWidget.saveWidgetData<String>('title', title);
+    HomeWidget.saveWidgetData<String>('description', description);
+    HomeWidget.updateWidget(
+      androidName: androidWidgetName,
+    );
+  }
+
   @override
   void initState() {
     super.initState();
+
+    HomeWidget.setAppGroupId(appGroupId);
 
     Future.microtask(() {
       if (!mounted) return;
@@ -43,6 +59,8 @@ class _LeftAppState extends ConsumerState<LeftApp> {
         ref.read(userProvider.notifier).update((state) => null);
       }
     });
+
+    updateWidget();
   }
 
   @override
