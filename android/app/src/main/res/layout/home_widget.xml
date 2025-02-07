@@ -11,30 +11,14 @@
         style="@style/Widget.Android.AppWidget.InnerView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentLeft="true"
-        android:layout_marginStart="8dp"
-        android:layout_marginLeft="8dp"
-        android:background="@android:color/white"
+        android:layout_centerInParent="true"
+        android:background="@android:color/black"
+        android:fontFamily="@font/sora_font"
         android:text="Title"
-        android:textColor="@android:color/black"
-        android:textSize="20sp"
+        android:textAllCaps="true"
+        android:textColor="@android:color/white"
+        android:textSize="16sp"
         android:textStyle="bold" />
 
-    <TextView
-        android:id="@+id/description"
-        style="@style/Widget.Android.AppWidget.InnerView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/title"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentLeft="true"
-        android:layout_marginStart="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginTop="4dp"
-        android:background="@android:color/white"
-        android:text="Title"
-        android:textColor="@android:color/black"
-        android:textSize="16sp" />
 
 </RelativeLayout>

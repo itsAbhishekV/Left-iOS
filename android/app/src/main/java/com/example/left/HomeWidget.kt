@@ -25,9 +25,6 @@ class HomeWidget : AppWidgetProvider() {
 
                 val title = widgetData.getString("title", null)
                 setTextViewText(R.id.title, title ?: "No title set")
-
-                val description = widgetData.getString("description", null)
-                setTextViewText(R.id.description, description ?: "No description set")
             }
 
             appWidgetManager.updateAppWidget(appWidgetId, views)

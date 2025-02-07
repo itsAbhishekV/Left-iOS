@@ -25,10 +25,8 @@ class LeftApp extends ConsumerStatefulWidget {
 
 class _LeftAppState extends ConsumerState<LeftApp> {
   void updateWidget() {
-    final title = 'Left';
-    final description = 'A new Flutter project.';
+    final title = getCurrentMonthName();
     HomeWidget.saveWidgetData<String>('title', title);
-    HomeWidget.saveWidgetData<String>('description', description);
     HomeWidget.updateWidget(
       androidName: androidWidgetName,
     );
