@@ -1,7 +1,9 @@
-# Left for Android
+# Left for Android 📱
 
-A simple, no-frills app that visualizes your life as dots—dull for days you’ve lived, bright for the
-days ahead. No ads, no sign-ups, just a clean way to track time.
+<p align="center">
+  <img src="screenshots/home_ss.png" width="200" alt="Home Screen">&nbsp;&nbsp;
+  <img src="screenshots/customizing_ss.png" width="200" alt="Customization Sheet">
+</p>
 
 ### 📥 Download APK
 
@@ -9,15 +11,12 @@ days ahead. No ads, no sign-ups, just a clean way to track time.
 
 ### 🚀 Clone & Run
 
-```sh
+### Build from Source
+Clone and run the project locally:
+
+```bash
 git clone https://github.com/itsAbhishekV/Left-iOS.git
 cd Left-iOS
 flutter pub get
 flutter run
 ```
-
-### 📸 Screenshots
-
-<img src="screenshots/home_ss.png" width="200" alt="Home Screen"> 
-
-<img src="screenshots/customizing_ss.png" width="200" alt="Customization Sheet">
