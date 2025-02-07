@@ -10,14 +10,14 @@ class DotsDisplayGrid extends ConsumerWidget {
     super.key,
     required this.totalDots,
     required this.dulledDots,
-    required this.handleDotTap,
-    required this.handleDotRelease,
+    this.handleDotTap,
+    this.handleDotRelease,
   });
 
   final int totalDots;
   final int dulledDots;
-  final void Function(int) handleDotTap;
-  final void Function() handleDotRelease;
+  final void Function(int)? handleDotTap;
+  final void Function()? handleDotRelease;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -27,19 +27,25 @@ class DotsDisplayGrid extends ConsumerWidget {
       runSpacing: type == DotsType.life ? 8.0 : 16.0,
       children: List.generate(
         totalDots,
-        (index) => GestureDetector(
-          behavior: HitTestBehavior.opaque,
-          onTapDown: (_) {
-            print('index: $index');
-            handleDotTap(index);
-          },
-          onTapUp: (_) => handleDotRelease(),
-          onTapCancel: handleDotRelease,
-          child: Dot(
-            dull: index < dulledDots,
-            type: type,
-          ),
-        ),
+        (index) => (handleDotRelease == null && handleDotTap == null)
+            ? Dot(
+                forHomeWidget: true,
+                dull: index < dulledDots,
+                type: DotsType.month, // for home widget
+              )
+            : GestureDetector(
+                behavior: HitTestBehavior.opaque,
+                onTapDown: (_) {
+                  print('index: $index');
+                  handleDotTap!(index);
+                },
+                onTapUp: (_) => handleDotRelease!(),
+                onTapCancel: handleDotRelease,
+                child: Dot(
+                  dull: index < dulledDots,
+                  type: type,
+                ),
+              ),
       ),
     );
   }

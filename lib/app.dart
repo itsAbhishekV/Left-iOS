@@ -24,18 +24,9 @@ class LeftApp extends ConsumerStatefulWidget {
 }
 
 class _LeftAppState extends ConsumerState<LeftApp> {
-  void updateWidget() {
-    final title = getCurrentMonthName();
-    HomeWidget.saveWidgetData<String>('title', title);
-    HomeWidget.updateWidget(
-      androidName: androidWidgetName,
-    );
-  }
-
   @override
   void initState() {
     super.initState();
-
     HomeWidget.setAppGroupId(appGroupId);
 
     Future.microtask(() {
@@ -59,6 +50,14 @@ class _LeftAppState extends ConsumerState<LeftApp> {
     });
 
     updateWidget();
+  }
+
+  // updates the home widget
+  void updateWidget() {
+    final title = getCurrentMonthName();
+    HomeWidget.saveWidgetData<String>('title', title);
+
+    HomeWidget.updateWidget(androidName: androidWidgetName);
   }
 
   @override
