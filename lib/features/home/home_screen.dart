@@ -123,13 +123,13 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
       child: Scaffold(
         body: SafeArea(
           child: Padding(
-            padding:
-                const EdgeInsets.symmetric(horizontal: 18.0, vertical: 20.0),
+            padding: const EdgeInsets.symmetric(horizontal: 18.0, vertical: 20.0),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Expanded(
                   child: DotsDisplayGrid(
+                    isCurrentDay: DateTime.now() == now,
                     totalDots: totalDots,
                     dulledDots: dulledDots,
                     handleDotTap: _handleDotTap,
@@ -186,6 +186,9 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
               return dotsType[nextIndex];
             });
             HapticFeedback.vibrate();
+
+            // Update widgets when switching views
+            WidgetService.updateAllWidgets();
           },
           child: Text(
             showDate ? formattedDate ?? '' : footerHeading,

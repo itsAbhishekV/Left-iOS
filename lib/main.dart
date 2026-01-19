@@ -12,6 +12,9 @@ void main() async {
   final name = await sharedPrefs.getUserName();
   final colorIndex = await sharedPrefs.getColorIndex();
 
+  // Update home widgets on app start
+  await WidgetService.updateAllWidgets();
+
   runApp(
     ProviderScope(
       child: LeftApp(

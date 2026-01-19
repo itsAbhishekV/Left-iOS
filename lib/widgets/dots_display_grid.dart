@@ -10,12 +10,14 @@ class DotsDisplayGrid extends ConsumerWidget {
     super.key,
     required this.totalDots,
     required this.dulledDots,
+    this.isCurrentDay = false,
     this.handleDotTap,
     this.handleDotRelease,
   });
 
   final int totalDots;
   final int dulledDots;
+  final bool? isCurrentDay;
   final void Function(int)? handleDotTap;
   final void Function()? handleDotRelease;
 
@@ -42,6 +44,7 @@ class DotsDisplayGrid extends ConsumerWidget {
                 onTapUp: (_) => handleDotRelease!(),
                 onTapCancel: handleDotRelease,
                 child: Dot(
+                  isCurrentDay: isCurrentDay,
                   dull: index < dulledDots,
                   type: type,
                 ),

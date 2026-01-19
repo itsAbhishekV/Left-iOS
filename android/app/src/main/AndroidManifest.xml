@@ -26,8 +26,9 @@
         android:enableOnBackInvokedCallback="true"
         android:icon="@mipmap/ic_launcher"
         android:label="left">
+        <!-- Monthly Widget - Shows current month with dots for each day -->
         <receiver
-            android:name=".HomeWidget"
+            android:name=".MonthlyWidget"
             android:exported="false">
             <intent-filter>
                 <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
@@ -35,7 +36,20 @@
 
             <meta-data
                 android:name="android.appwidget.provider"
-                android:resource="@xml/home_widget_info" />
+                android:resource="@xml/monthly_widget_info" />
+        </receiver>
+
+        <!-- Yearly Widget - Shows current year with dots for each day -->
+        <receiver
+            android:name=".YearlyWidget"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+            </intent-filter>
+
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/yearly_widget_info" />
         </receiver>
 
         <activity

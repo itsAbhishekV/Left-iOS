@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Yearly dot - 6dp size, compact for 365 dots -->
+<ImageView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/dot_image"
+    android:layout_width="6dp"
+    android:layout_height="6dp"
+    android:layout_margin="2dp"
+    android:contentDescription="Day dot"
+    android:scaleType="fitCenter" />
