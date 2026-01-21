@@ -2,7 +2,7 @@ import 'package:home_widget/home_widget.dart';
 import 'package:left/core/exports.dart';
 
 /// Service to manage home widget updates
-/// This communicates with native Android widgets
+/// This communicates with native Android and iOS widgets
 class WidgetService {
   /// Updates the monthly widget with current month data
   /// Shows: Current month name + dots for each day
@@ -22,7 +22,7 @@ class WidgetService {
       // So dots 1-14 will be dulled, dots 15-31 will be normal
       final passedDays = now.day - 1;
 
-      // Send data to native Android widget
+      // Send data to native widgets (Android & iOS)
       await HomeWidget.saveWidgetData<String>('monthly_title', monthName);
       await HomeWidget.saveWidgetData<int>('monthly_total_items', totalDays);
       await HomeWidget.saveWidgetData<int>('monthly_passed_items', passedDays);
@@ -31,6 +31,7 @@ class WidgetService {
       await HomeWidget.updateWidget(
         name: 'MonthlyWidget',
         androidName: 'MonthlyWidget',
+        iOSName: 'MonthlyWidget',
       );
     } catch (e) {
       print('Error updating monthly widget: $e');
@@ -55,7 +56,7 @@ class WidgetService {
       // So dots 1-18 will be dulled, dots 19-365 will be bright
       final passedDays = getDaysPassedInYear() - 1;
 
-      // Send data to native Android widget
+      // Send data to native widgets (Android & iOS)
       await HomeWidget.saveWidgetData<String>('yearly_title', year);
       await HomeWidget.saveWidgetData<int>('yearly_total_items', totalDays);
       await HomeWidget.saveWidgetData<int>('yearly_passed_items', passedDays);
@@ -64,6 +65,7 @@ class WidgetService {
       await HomeWidget.updateWidget(
         name: 'YearlyWidget',
         androidName: 'YearlyWidget',
+        iOSName: 'YearlyWidget',
       );
     } catch (e) {
       print('Error updating yearly widget: $e');
