@@ -24,7 +24,6 @@ class _ProfileBottomSheetState extends ConsumerState<ProfileBottomSheet> {
 
   @override
   void initState() {
-    // TODO: implement initState
     final user = ref.read(userProvider);
     if (user != null) {
       _nameController.text = user.name;
@@ -45,8 +44,7 @@ class _ProfileBottomSheetState extends ConsumerState<ProfileBottomSheet> {
     final colorIndex = ref.watch(colorIndexProvider);
 
     final user = UserModel(name: name, dob: dob, colorIndex: colorIndex);
-    print('USER: ');
-    print(user.toJson());
+
     final sharedPrefs = SharedPrefsService();
 
     // saving to shared prefs.

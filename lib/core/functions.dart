@@ -35,7 +35,6 @@ int getTotalMonthsInLife() {
 int getMonthsPassedInLife(DateTime dateOfBirth) {
   final now = DateTime.now();
   int yearsPassed = now.year - dateOfBirth.year;
-  int monthsPassed = now.month - dateOfBirth.month;
 
   if (now.month < dateOfBirth.month ||
       (now.month == dateOfBirth.month && now.day < dateOfBirth.day)) {
