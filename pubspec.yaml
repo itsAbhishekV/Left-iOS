@@ -19,6 +19,7 @@ dependencies:
   gap: ^3.0.1
   shared_preferences: ^2.5.1
   bottom_picker: ^2.11.0
+  flutter_launcher_icons: ^0.14.4
 
 dev_dependencies:
   flutter_test:
@@ -44,3 +45,11 @@ flutter:
           weight: 600
         - asset: assets/fonts/Sora-Bold.ttf
           weight: 700
+
+flutter_launcher_icons:
+  android: "launcher_icon"
+  image_path_android: "assets/logos/app_icon_android.png"
+  min_sdk_android: 23
+  ios: true
+  image_path_ios: "assets/logos/app_icon_ios.png"
+  remove_alpha_ios: true
