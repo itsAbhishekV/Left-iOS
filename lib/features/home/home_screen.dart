@@ -104,11 +104,6 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
 
     _initializeDots(type, dobInString);
 
-    debugPrint('esterText: $showEsterText');
-    debugPrint('type: $type');
-    debugPrint('totalDots: $totalDots');
-    debugPrint('dulledDots: $dulledDots');
-
     return GestureDetector(
       onDoubleTap: () {
         showBottomModalDialog(

@@ -43,13 +43,6 @@ int getMonthsPassedInLife(DateTime dateOfBirth) {
 
   int totalMonthsPassed = (yearsPassed * 12) + now.month - dateOfBirth.month;
 
-  // Debugging prints
-  // print('DOB: $dateOfBirth');
-  // print('Now: $now');
-  // print('Years Passed: $yearsPassed');
-  // print('Months Passed: ${now.month - dateOfBirth.month}');
-  // print('Total Months Passed: $totalMonthsPassed');
-
   return totalMonthsPassed;
 }
 
