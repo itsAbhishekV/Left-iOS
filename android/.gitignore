@@ -13,3 +13,5 @@ key.properties
 **/*.jks
 
 keystore.properties
+
+/.kotlin
