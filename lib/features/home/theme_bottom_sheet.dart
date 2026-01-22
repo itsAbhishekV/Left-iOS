@@ -2,8 +2,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:gap/gap.dart';
-import 'package:left/core/exports.dart';
-import 'package:left/features/exports.dart';
+import 'package:supadots/core/exports.dart';
+import 'package:supadots/features/exports.dart';
 
 class ThemeBottomSheet extends ConsumerStatefulWidget {
   const ThemeBottomSheet({super.key});

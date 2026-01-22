@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:left/core/exports.dart';
+import 'package:supadots/core/exports.dart';
 
 showBottomModalDialog({
   required BuildContext context,

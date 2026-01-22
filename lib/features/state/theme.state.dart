@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:left/core/exports.dart';
+import 'package:supadots/core/exports.dart';
 
 class ThemeNotifier extends StateNotifier<Color> {
   ThemeNotifier(this.ref) : super(appColors[0]);

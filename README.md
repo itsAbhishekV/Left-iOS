@@ -1,4 +1,4 @@
-# Left for Android 📱
+# SupaDots (Left for Android) 📱
 
 <p align="center">
   <img src="screenshots/home_ss.png" width="200" alt="Home Screen">&nbsp;&nbsp;

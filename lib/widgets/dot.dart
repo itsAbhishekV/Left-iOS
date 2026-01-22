@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:left/core/enum.dart';
-import 'package:left/features/exports.dart';
+import 'package:supadots/core/enum.dart';
+import 'package:supadots/features/exports.dart';
 
 class Dot extends ConsumerWidget {
   const Dot({

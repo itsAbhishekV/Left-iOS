@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:left/core/exports.dart';
-import 'package:left/features/exports.dart';
-import 'package:left/widgets/dots_display_grid.dart';
+import 'package:supadots/core/exports.dart';
+import 'package:supadots/features/exports.dart';
+import 'package:supadots/widgets/dots_display_grid.dart';
 
 class HomeScreen extends ConsumerStatefulWidget {
   const HomeScreen({super.key});

@@ -1,5 +1,5 @@
 import 'package:intl/intl.dart';
-import 'package:left/core/enum.dart';
+import 'package:supadots/core/enum.dart';
 
 int getDaysInCurrentYear() {
   int year = DateTime.now().year;
