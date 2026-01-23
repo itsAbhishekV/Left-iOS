@@ -208,10 +208,16 @@ struct DotWidgetEntryView: View {
         family == .systemSmall
     }
     
+    /// Is this a large widget?
+    var isLarge: Bool {
+        family == .systemLarge
+    }
+    
     /// Dot size based on widget type and size
     var dotSize: CGFloat {
         if entry.isYearly {
-            return 4.2
+            // Yearly: larger dots for large widget
+            return isLarge ? 7.6 : 4.5
         }
         return isSmall ? 12 : 16
     }
@@ -219,24 +225,41 @@ struct DotWidgetEntryView: View {
     /// Spacing between dots
     var spacing: CGFloat {
         if entry.isYearly {
-            return 4
+            // Yearly: more spacing for large widget
+            return isLarge ? 6 : 4
         }
         return isSmall ? 6 : 8
     }
     
     /// Font size for title
     var titleFontSize: CGFloat {
-        isSmall ? 13 : 16
+        if entry.isYearly && isLarge {
+            return 22
+        }
+        return isSmall ? 13 : 16
+    }
+
+    var titleAndDotSpacing: CGFloat {
+        if entry.isYearly && isLarge {
+            return 24
+        }
+        return 16
     }
     
     /// Font size for subtitle
     var subtitleFontSize: CGFloat {
-        isSmall ? 10 : 12
+        if entry.isYearly && isLarge {
+            return 14
+        }
+        return isSmall ? 10 : 12
     }
     
     /// Padding around content
     var contentPadding: CGFloat {
-        isSmall ? 4 : 12
+        if entry.isYearly {
+            return isLarge ? 16 : 8
+        }
+        return isSmall ? 4 : 12
     }
     
     var body: some View {
@@ -259,7 +282,7 @@ struct DotWidgetEntryView: View {
                     .lineLimit(1)
                     .minimumScaleFactor(0.7)
             }
-            .padding(.bottom, 16)
+            .padding(.bottom, titleAndDotSpacing)
             
             // Dots Grid - dynamically adapts to available width
             DotsGridView(
@@ -292,7 +315,7 @@ struct MonthlyWidget: Widget {
     }
 }
 
-// MARK: - Yearly Widget (Medium only)
+// MARK: - Yearly Widget (Medium & Large)
 struct YearlyWidget: Widget {
     let kind: String = "YearlyWidget"
     
@@ -302,7 +325,7 @@ struct YearlyWidget: Widget {
         }
         .configurationDisplayName("Yearly")
         .description("Track days passed in the current year")
-        .supportedFamilies([.systemMedium])
+        .supportedFamilies([.systemMedium, .systemLarge])
     }
 }
 
@@ -320,6 +343,12 @@ struct YearlyWidget: Widget {
 }
 
 #Preview(as: .systemMedium) {
+    YearlyWidget()
+} timeline: {
+    DotWidgetEntry(date: .now, data: WidgetData.yearly(), isYearly: true)
+}
+
+#Preview(as: .systemLarge) {
     YearlyWidget()
 } timeline: {
     DotWidgetEntry(date: .now, data: WidgetData.yearly(), isYearly: true)
