@@ -1,5 +1,6 @@
 import 'package:home_widget/home_widget.dart';
-import 'package:left/core/exports.dart';
+
+import 'package:supadots/core/exports.dart';
 
 /// Service to manage home widget updates
 /// This communicates with native Android and iOS widgets

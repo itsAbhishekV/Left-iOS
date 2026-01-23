@@ -5,8 +5,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:gap/gap.dart';
 import 'package:intl/intl.dart';
-import 'package:left/core/exports.dart';
-import 'package:left/features/exports.dart';
+import 'package:supadots/core/exports.dart';
+import 'package:supadots/features/exports.dart';
 
 class ProfileBottomSheet extends ConsumerStatefulWidget {
   const ProfileBottomSheet({super.key});
@@ -24,7 +24,6 @@ class _ProfileBottomSheetState extends ConsumerState<ProfileBottomSheet> {
 
   @override
   void initState() {
-    // TODO: implement initState
     final user = ref.read(userProvider);
     if (user != null) {
       _nameController.text = user.name;
@@ -45,8 +44,7 @@ class _ProfileBottomSheetState extends ConsumerState<ProfileBottomSheet> {
     final colorIndex = ref.watch(colorIndexProvider);
 
     final user = UserModel(name: name, dob: dob, colorIndex: colorIndex);
-    print('USER: ');
-    print(user.toJson());
+
     final sharedPrefs = SharedPrefsService();
 
     // saving to shared prefs.

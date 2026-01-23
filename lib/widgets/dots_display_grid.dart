@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:left/core/exports.dart';
-import 'package:left/features/exports.dart';
 
+import 'package:supadots/core/enum.dart';
+import 'package:supadots/features/exports.dart';
 import 'dot.dart';
 
 class DotsDisplayGrid extends ConsumerWidget {
@@ -29,26 +29,26 @@ class DotsDisplayGrid extends ConsumerWidget {
       runSpacing: type == DotsType.life ? 8.0 : 16.0,
       children: List.generate(
         totalDots,
-        (index) => (handleDotRelease == null && handleDotTap == null)
+            (index) => (handleDotRelease == null && handleDotTap == null)
             ? Dot(
-                forHomeWidget: true,
-                dull: index < dulledDots,
-                type: DotsType.month, // for home widget
-              )
+          forHomeWidget: true,
+          dull: index < dulledDots,
+          type: DotsType.month, // for home widget
+        )
             : GestureDetector(
-                behavior: HitTestBehavior.opaque,
-                onTapDown: (_) {
-                  print('index: $index');
-                  handleDotTap!(index);
-                },
-                onTapUp: (_) => handleDotRelease!(),
-                onTapCancel: handleDotRelease,
-                child: Dot(
-                  isCurrentDay: isCurrentDay,
-                  dull: index < dulledDots,
-                  type: type,
-                ),
-              ),
+          behavior: HitTestBehavior.opaque,
+          onTapDown: (_) {
+            print('index: $index');
+            handleDotTap!(index);
+          },
+          onTapUp: (_) => handleDotRelease!(),
+          onTapCancel: handleDotRelease,
+          child: Dot(
+            isCurrentDay: isCurrentDay,
+            dull: index < dulledDots,
+            type: type,
+          ),
+        ),
       ),
     );
   }

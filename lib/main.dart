@@ -21,7 +21,7 @@ void main() async {
 
   runApp(
     ProviderScope(
-      child: LeftApp(
+      child: App(
         name: name,
         dob: dob,
         colorIndex: colorIndex,

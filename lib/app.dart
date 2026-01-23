@@ -1,18 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:home_widget/home_widget.dart';
-import 'package:left/core/exports.dart';
-import 'package:left/features/exports.dart';
+import 'package:supadots/core/exports.dart';
+import 'package:supadots/features/exports.dart';
 
 const String appGroupId = 'home_widget';
 const String androidWidgetName = 'HomeWidget';
 
-class LeftApp extends ConsumerStatefulWidget {
+class App extends ConsumerStatefulWidget {
   final String? name;
   final String? dob;
   final int? colorIndex;
 
-  const LeftApp({
+  const App({
     super.key,
     this.name,
     this.dob,
@@ -20,10 +20,10 @@ class LeftApp extends ConsumerStatefulWidget {
   });
 
   @override
-  ConsumerState<LeftApp> createState() => _LeftAppState();
+  ConsumerState<App> createState() => _AppState();
 }
 
-class _LeftAppState extends ConsumerState<LeftApp> {
+class _AppState extends ConsumerState<App> {
   @override
   void initState() {
     super.initState();
@@ -63,9 +63,9 @@ class _LeftAppState extends ConsumerState<LeftApp> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Left',
-      theme: darkTheme(),
       debugShowCheckedModeBanner: false,
+      title: appName,
+      theme: darkTheme(),
       home: HomeScreen(),
     );
   }

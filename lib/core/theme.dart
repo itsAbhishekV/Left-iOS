@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:left/core/palette.dart';
+import 'package:supadots/core/palette.dart';
 
 class AppTextStyle {
   static TextStyle title = TextStyle(

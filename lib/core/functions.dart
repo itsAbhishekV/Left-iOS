@@ -1,5 +1,6 @@
 import 'package:intl/intl.dart';
-import 'package:left/core/enum.dart';
+
+import 'enum.dart';
 
 // for home widget
 String getCurrentMonthName() {
@@ -40,7 +41,6 @@ int getTotalMonthsInLife() {
 int getMonthsPassedInLife(DateTime dateOfBirth) {
   final now = DateTime.now();
   int yearsPassed = now.year - dateOfBirth.year;
-  int monthsPassed = now.month - dateOfBirth.month;
 
   if (now.month < dateOfBirth.month ||
       (now.month == dateOfBirth.month && now.day < dateOfBirth.day)) {
@@ -48,13 +48,6 @@ int getMonthsPassedInLife(DateTime dateOfBirth) {
   }
 
   int totalMonthsPassed = (yearsPassed * 12) + now.month - dateOfBirth.month;
-
-  // Debugging prints
-  // print('DOB: $dateOfBirth');
-  // print('Now: $now');
-  // print('Years Passed: $yearsPassed');
-  // print('Months Passed: ${now.month - dateOfBirth.month}');
-  // print('Total Months Passed: $totalMonthsPassed');
 
   return totalMonthsPassed;
 }
