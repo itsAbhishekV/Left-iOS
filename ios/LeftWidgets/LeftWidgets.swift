@@ -11,18 +11,17 @@ import SwiftUI
 // MARK: - App Group ID
 private let appGroupId = "group.com.example.left"
 
-// MARK: - Theme Colors
+// MARK: - Theme Colors (Purple theme)
 struct WidgetTheme {
     /// Background color: #100E22
     static let background = Color(red: 16/255, green: 14/255, blue: 34/255)
     
-    /// Active dot color (upcoming days): #9C82FF
-    static let activeDot = Color(red: 156/255, green: 130/255, blue: 255/255) // #9C82FF
-
-    /// Inactive dot color (passed days): #605496
-    static let inactiveDot = Color(red: 96/255, green: 84/255, blue: 150/255) // #605496
-
-
+    /// Active dot color: #9C82FF (purple)
+    static let activeDot = Color(red: 156/255, green: 130/255, blue: 255/255)
+    
+    /// Inactive dot color: Same purple with 27% opacity (matching Flutter's withAlpha(69))
+    static let inactiveDot = activeDot.opacity(Double(69) / 255.0)
+    
     /// Text color for title
     static let titleText = Color.white
     
@@ -171,7 +170,7 @@ struct DotsGridView: View {
         guard totalItems > 0, columns > 0 else { return 0 }
         return (totalItems + columns - 1) / columns
     }
-    
+
     var body: some View {
         GeometryReader { geometry in
             let columns = columnsForWidth(geometry.size.width)
@@ -282,7 +281,7 @@ struct DotWidgetEntryView: View {
 // MARK: - Monthly Widget (Small & Medium only)
 struct MonthlyWidget: Widget {
     let kind: String = "MonthlyWidget"
-    
+
     var body: some WidgetConfiguration {
         StaticConfiguration(kind: kind, provider: MonthlyProvider()) { entry in
             DotWidgetEntryView(entry: entry)
