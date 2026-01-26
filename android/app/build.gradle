@@ -29,7 +29,7 @@ android {
 
     defaultConfig {
         applicationId = "af.invisible.supadots"
-        minSdk = 23
+        minSdkVersion = flutter.minSdkVersion
         targetSdk = 35
         versionCode = flutter.versionCode
         versionName = flutter.versionName
@@ -50,6 +50,9 @@ android {
         release {
            signingConfig signingConfigs.release
         }
+    }
+    buildFeatures {
+        viewBinding true
     }
 }
 

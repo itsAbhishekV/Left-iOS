@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Monthly dot - 18dp size, compact margins -->
+<ImageView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/dot_image"
+    android:layout_width="18dp"
+    android:layout_height="18dp"
+    android:layout_margin="4dp"
+    android:contentDescription="Day dot"
+    android:scaleType="fitCenter" />
+

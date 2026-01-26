@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:home_widget/home_widget.dart';
 import 'package:supadots/core/exports.dart';
 import 'package:supadots/features/exports.dart';
+
+const String appGroupId = 'home_widget';
+const String androidWidgetName = 'HomeWidget';
 
 class App extends ConsumerStatefulWidget {
   final String? name;
@@ -23,6 +27,7 @@ class _AppState extends ConsumerState<App> {
   @override
   void initState() {
     super.initState();
+    HomeWidget.setAppGroupId(appGroupId);
 
     Future.microtask(() {
       if (!mounted) return;
@@ -43,6 +48,16 @@ class _AppState extends ConsumerState<App> {
         ref.read(userProvider.notifier).update((state) => null);
       }
     });
+
+    updateWidget();
+  }
+
+  // updates the home widget
+  void updateWidget() {
+    final title = getCurrentMonthName();
+    HomeWidget.saveWidgetData<String>('title', title);
+
+    HomeWidget.updateWidget(androidName: androidWidgetName);
   }
 
   @override

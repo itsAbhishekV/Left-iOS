@@ -8,10 +8,14 @@ class Dot extends ConsumerWidget {
     super.key,
     this.dull = false,
     this.type = DotsType.month,
+    this.isCurrentDay = false,
+    this.forHomeWidget = false,
   });
 
   final bool dull;
   final DotsType type;
+  final bool? isCurrentDay;
+  final bool? forHomeWidget;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -20,10 +24,10 @@ class Dot extends ConsumerWidget {
 
     switch (type) {
       case DotsType.month:
-        size = 18.0;
+        size = forHomeWidget == true ? 12.0 : 18.0;
         break;
       case DotsType.year:
-        size = 4.0;
+        size = 5.0;
         break;
       case DotsType.life:
         size = 3.0;
@@ -31,8 +35,14 @@ class Dot extends ConsumerWidget {
     }
 
     return CircleAvatar(
-      backgroundColor: dull ? theme.withAlpha(69) : theme,
-      radius: size,
+      backgroundColor: isCurrentDay == true ? Colors.white : Colors.transparent,
+      radius: isCurrentDay == true ? size + 2.0 : size,
+      child: CircleAvatar(
+        backgroundColor: forHomeWidget == true
+            ? (dull ? Colors.white.withAlpha(69) : Colors.white)
+            : (dull ? theme.withAlpha(69) : theme),
+        radius: size,
+      ),
     );
   }
 }

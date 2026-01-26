@@ -1,5 +1,11 @@
 import 'package:intl/intl.dart';
-import 'package:supadots/core/enum.dart';
+
+import 'enum.dart';
+
+// for home widget
+String getCurrentMonthName() {
+  return DateFormat('MMMM').format(DateTime.now());
+}
 
 int getDaysInCurrentYear() {
   int year = DateTime.now().year;
