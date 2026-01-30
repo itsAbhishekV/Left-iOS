@@ -9,7 +9,7 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
   // Configure home_widget for iOS (App Group ID for data sharing)
-  await HomeWidget.setAppGroupId('group.com.example.left');
+  await HomeWidget.setAppGroupId('group.af.invisible.supadots');
 
   final sharedPrefs = SharedPrefsService();
   final dob = await sharedPrefs.getDob();

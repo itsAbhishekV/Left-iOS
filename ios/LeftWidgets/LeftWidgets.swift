@@ -9,7 +9,7 @@ import WidgetKit
 import SwiftUI
 
 // MARK: - App Group ID
-private let appGroupId = "group.com.example.left"
+private let appGroupId = "group.af.invisible.supadots"
 
 // MARK: - Theme Colors (Purple theme)
 struct WidgetTheme {
