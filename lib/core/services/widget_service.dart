@@ -1,5 +1,5 @@
+import 'package:flutter/foundation.dart';
 import 'package:home_widget/home_widget.dart';
-
 import 'package:supadots/core/exports.dart';
 
 /// Service to manage home widget updates
@@ -35,7 +35,9 @@ class WidgetService {
         iOSName: 'MonthlyWidget',
       );
     } catch (e) {
-      print('Error updating monthly widget: $e');
+      if (kDebugMode) {
+        print('Error updating monthly widget: $e');
+      }
     }
   }
 
@@ -69,7 +71,9 @@ class WidgetService {
         iOSName: 'YearlyWidget',
       );
     } catch (e) {
-      print('Error updating yearly widget: $e');
+      if (kDebugMode) {
+        print('Error updating yearly widget: $e');
+      }
     }
   }
 

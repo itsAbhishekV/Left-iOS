@@ -118,7 +118,8 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
       child: Scaffold(
         body: SafeArea(
           child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 18.0, vertical: 20.0),
+            padding:
+                const EdgeInsets.symmetric(horizontal: 18.0, vertical: 20.0),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
